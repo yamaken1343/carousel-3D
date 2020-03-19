@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carousel3D</title>
+    <link rel="stylesheet" type="text/css" href="carousel3d.css">
+    <style>
+        :root {
+            --carousel3dControllerSize: 20px;
+            --carousel3dControllerWidth: 3px;
+            --carousel3dControllerColor: #0500ff;
+        }
+
+        #test {
+            width: 800px;
+            height: 600px;
+            border: solid 2px black;
+        }
+
+
+        #test2 {
+            width: 400px;
+            height: 394px;
+            border: solid 2px black;
+        }
+
+        #testView {
+            width: 400px;
+            height: 300px;
+            border: solid 2px red;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<h1> Carousel 3D Demo</h1>
+
+<!--Automatic content load method (img only)-->
+<div id="testView"></div>
+<div id="test" class="carousel3d"></div>
+You can use arrow key to move.
+And 'F' and 'B' key to move forward/backward.
+
+<script src="carousel3d.js"></script>
+<script>
+    let list = [];
+    for (let i = 0; i < 125; i++) {
+        list.push(`demo/img/${i}.png`)
+    }
+    // Automatic content load method (img only)
+    let a = new Carousel3d('test', list, {
+        contentHeightNum: 5,  // 縦のコンテンツ数
+        contentWidthNum: 5,  // 横のコンテンツ数
+        contentDepthNum: 5,  // 奥方向に表示されるコンテンツ数
+        contentWidth: '160px',  // 画像サイズ
+        contentHeight: `120px`,
+        overlapGap: 8,  // %で指定
+        overlapVisible: 4,  // 奥方向に表示される表示数
+        contentPadding: '20px',  // 画像間の距離
+        targetX: 2,  // 最初にフォーカスされる場所
+        targetY: 2,
+        targetZ: 2,
+        useView: true,
+        useController: true
+    });
+
+    document.addEventListener('keydown', ev => {
+        if (ev.key === 'ArrowRight') {
+            console.log('right');
+            a.moveRight();
+        }
+        if (ev.key === "ArrowLeft") {
+            console.log('left');
+            a.moveLeft();
+        }
+
+        if(ev.key === "ArrowUp") {
+            console.log('up');
+            a.moveUp();
+        }
+        if(ev.key === "ArrowDown") {
+            console.log('down');
+            a.moveDown();
+        }
+        if(ev.key === 'b'){
+            // console.log('depth down', a.targetZ);
+            a.moveRelativeDepth(1)
+        }
+
+        if(ev.key === 'f'){
+            // console.log('depth up', a.targetZ);
+            a.moveRelativeDepth(-1)
+        }
+    });
+</script>
+</body>
+</html>

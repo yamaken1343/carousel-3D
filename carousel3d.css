@@ -1,0 +1,85 @@
+.carousel3d {
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.carousel3dCol {
+    display: inline-block;
+    position: relative;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.carousel3dRow {
+    white-space: nowrap;
+    position: relative;
+}
+
+.carousel3dDep {
+    position: absolute;
+}
+
+.carousel3dContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+}
+.carousel3dController{
+    position: absolute;
+}
+.carousel3dController-right{
+    right: calc(var(--carousel3dControllerSize));
+    top: 0;
+    height: 100%;
+}
+.carousel3dController-left{
+    left: calc(var(--carousel3dControllerSize));
+    top: 0;
+    height: 100%;
+}
+.carousel3dController-down{
+    left: 0;
+    bottom: calc(var(--carousel3dControllerSize));
+    width: 100%;
+}
+.carousel3dController-up{
+    left: 0;
+    top: calc(var(--carousel3dControllerSize));
+    width: 100%;
+}
+
+.carousel3dController-left::before, .carousel3dController-right::before, .carousel3dController-up::before, .carousel3dController-down::before{
+    content: '';
+    width: var(--carousel3dControllerSize);
+    height: var(--carousel3dControllerSize);
+    border: 0;
+    border-top: solid var(--carousel3dControllerWidth) var(--carousel3dControllerColor);
+    border-right: solid var(--carousel3dControllerWidth) var(--carousel3dControllerColor);
+    position: absolute;
+}
+
+
+.carousel3dController-left::before{
+    transform: rotate(225deg);
+    top: 50%;
+    left: 50%;
+}
+
+.carousel3dController-right::before{
+    transform: rotate(45deg);
+    top: 50%;
+    right: 50%;
+}
+
+.carousel3dController-down::before{
+    transform: rotate(135deg);
+    bottom: 50% ;
+    left: 50%;
+}
+
+.carousel3dController-up::before{
+    transform: rotate(315deg);
+    top: 50%;
+    left: 50%;
+}
